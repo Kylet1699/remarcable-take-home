@@ -14,8 +14,8 @@
       3. name: CharField
       4. description: TextField
       5. price: DecimalField
-      6. category: ForeignKey
-      7. tags: ManyToManyField
+      6. category: ForeignKey (Many-to-One, 1 category with many products)
+      7. tags: ManyToManyField (Many-to-Many)
    3. Tag
       1. created_at: DateTimeField
       2. updated_at: DateTimeField
