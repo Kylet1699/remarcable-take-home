@@ -33,7 +33,7 @@ class Product(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="products"
     )
-    tag = models.ManyToManyField(Tag, related_name="products")
+    tags = models.ManyToManyField(Tag, related_name="products")
 
     def __str__(self):
         return self.name  # Outputs name when object is converted to string

@@ -8,11 +8,29 @@ def products(request):
     categories = Category.objects.all()
     tags = Tag.objects.all()
     products = Product.objects.all()
+    print(products[0].__dict__)
+    print(products[0].tags.all())
 
-    # Get search parameter
+    #  Example product object
+    # {
+    #     "id": 1,
+    #     "created_at": datetime.datetime(
+    #         2025, 2, 6, 1, 6, 31, 202753, tzinfo=datetime.timezone.utc
+    #     ),
+    #     "updated_at": datetime.datetime(
+    #         2025, 2, 6, 1, 6, 31, 202767, tzinfo=datetime.timezone.utc
+    #     ),
+    #     "name": 'MacBook Pro 14"',
+    #     "description": "Latest model with M2 chip, 16GB RAM, 512GB SSD",
+    #     "price": Decimal("1999.99"),
+    #     "category_id": 7,
+    # }
+    # <QuerySet [<Tag: Best Seller>, <Tag: Premium>]>
+
+    # Get search parameter from URL after form submission
     search_query = request.GET.get("search", "")
-    category_id = request.GET.get("category", "")
-    tag_ids = request.GET.getlist("tags")
+    category_id_query = request.GET.get("category", "")
+    tag_ids_query = request.GET.getlist("tags")
 
     # Filter for products
     if search_query:
@@ -20,11 +38,14 @@ def products(request):
             Q(name__icontains=search_query) | Q(description__icontains=search_query)
         )
 
+    # Filter for categories
+    if category_id_query:
+        products = products.filter(Q(category_id=category_id_query))
+
     context = {
         "categories": categories,
         "tags": tags,
         "products": products,
         "search_query": search_query,
-        "selected_categories": int(category_id) if category_id else None,
     }
     return render(request, "products.html", context)
