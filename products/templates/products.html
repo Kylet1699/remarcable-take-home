@@ -1,7 +1,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 class="text-2xl mb-4">Products</h1>
+<h1 class="text-2xl mb-4">Products</h1>
+
+<!-- Search bar -->
+<div>
+    <label for="search">Search</label>
+    <input type="text" name="search" id="search" value="{{search_query}}" placeholder="Search Product...">
+</div>
+
+{% comment %}
+<!-- Category filter -->
+<div>
+    <label for="category">Category</label>
+    <select name="category" id="category">
+        <option value="">All Categories</option>
+        {% for category in categories %}
+        <option value="{{category.id}}" {% if selected_category == category.id%}Selected{% endif %}>
+            {{ category.name }}
+        </option>
+        {% endfor %}
+        </option>
+    </select>
+
+</div>
+
+<!-- Tag filter -->
+<div>
+    <label for="tag">Tag</label>
+    {% for tag in tags %}
+    <div>
+        <input type="checkbox" name="tags" id="tag_{{ tag.id }}" value="{{ tag.id }}"
+            {% if tag.id in selected_tags %}checked{% endif %}>
+        <label for="tag_{{ tag.id }}">{{ tag.name }}</label>
+    </div>
+    {% endfor %}
+</div> {% endcomment %}
+
+<!-- Products display -->
+<div>
+    <label for="product">Products</label>
+    {% for product in products  %}
+    <div>
+        {{ product.name }}
+    </div>
+    {% endfor %}
+</div>
+
+
 
 
 {% endblock %}
