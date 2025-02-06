@@ -33,6 +33,7 @@ def products(request):
 
     # Filter for products
     if search_query:
+        # Check the search query against both name and description
         products = products.filter(
             Q(name__icontains=search_query) | Q(description__icontains=search_query)
         )
