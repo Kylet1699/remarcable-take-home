@@ -1,5 +1,42 @@
+# Django Product Catalog
+A take-home project made with Django where users can search products by description, filter by categories and tags.
+
 ## Setup
+1. Clone the repository:\
+`git clone https://github.com/Kylet1699/remarcable-take-home.git`
+`cd remarcable_take_home`
+
+2. Install Django\
 `pip install django`
+
+3. Apply migration\
+`python manage.py migrate`
+
+1. Create superuser for admin access\
+`python manage.py createsuperuser`
+
+1. Run the development server\
+`python manage.py runserver`
+
+1. Access the product catalog at `http://127.0.0.1:8000/`
+
+## Front-End & Styling
+- Django template system
+- Tailwind CSS
+
+## Admin
+`username: kylet`
+`password: kylet123`
+
+## Assumptions
+1. Each product belongs to one category
+2. Product can have multiple tags
+3. Search field checks both product name and description
+4. Category dropdown is single select since all product belongs to only one category
+5. Tag filter allows multiple selections
+
+## AI usage
+- Generate sample data for 5 categories, 10 tags, 20 products
 
 ## Tasks
 1. Create models for products, categories, and tags
@@ -27,16 +64,3 @@
    1. Search text field for description
    2. Checklist for tags and categories, maybe multiselect
    3. Display search result including all product information
-
-## Styling
-- Tailwind css
-
-## Run Project
-`python manage.py runserver`
-
-## Admin
-`username: kylet`
-`password: kylet123`
-
-## AI usage
-- Generate sample data for 5 categories, 10 tags, 20 products
