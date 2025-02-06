@@ -27,3 +27,13 @@
    1. Search text field for description
    2. Checklist for tags and categories, maybe multiselect
    3. Display search result including all product information
+
+## Styling
+- Tailwind css
+
+## Run Project
+`python manage.py runserver`
+
+## Admin
+`username: kylet`
+`password: kylet123`

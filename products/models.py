@@ -11,6 +11,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name  # Outputs name when object is converted to string
 
+    class Meta:
+        verbose_name_plural = "categories"  # fixing plural model name in admin panel
+
 
 class Tag(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
