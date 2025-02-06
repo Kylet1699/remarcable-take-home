@@ -8,8 +8,6 @@ def products(request):
     categories = Category.objects.all()
     tags = Tag.objects.all()
     products = Product.objects.all()
-    print(products[0].__dict__)
-    print(products[0].tags.all())
 
     #  Example product object
     # {
@@ -24,12 +22,13 @@ def products(request):
     #     "description": "Latest model with M2 chip, 16GB RAM, 512GB SSD",
     #     "price": Decimal("1999.99"),
     #     "category_id": 7,
+    #     "tags": [1, 2, 3]
     # }
-    # <QuerySet [<Tag: Best Seller>, <Tag: Premium>]>
 
     # Get search parameter from URL after form submission
     search_query = request.GET.get("search", "")
     category_id_query = request.GET.get("category", "")
+    # Ex. ['1', '2', '3',]
     tags_id_query = request.GET.getlist("tags")
 
     # Filter for products
