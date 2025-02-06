@@ -30,7 +30,7 @@ def products(request):
     # Get search parameter from URL after form submission
     search_query = request.GET.get("search", "")
     category_id_query = request.GET.get("category", "")
-    tag_ids_query = request.GET.getlist("tags")
+    tags_id_query = request.GET.getlist("tags")
 
     # Filter for products
     if search_query:
@@ -40,12 +40,26 @@ def products(request):
 
     # Filter for categories
     if category_id_query:
-        products = products.filter(Q(category_id=category_id_query))
+        products = products.filter(Q(category_id=int(category_id_query)))
+
+    # Filter for tags
+    selected_tags = []  # Prep the array for the template
+    if tags_id_query:
+        # Match for all the tags
+        for tag_id in tags_id_query:
+            products = products.filter(Q(tags__id=int(tag_id)))
+            selected_tags.append(int(tag_id))
 
     context = {
         "categories": categories,
         "tags": tags,
         "products": products,
         "search_query": search_query,
+        "selected_tags": selected_tags,
+        "selected_category": (
+            int(category_id_query)
+            if category_id_query and category_id_query.isdigit()
+            else None
+        ),
     }
     return render(request, "products.html", context)
