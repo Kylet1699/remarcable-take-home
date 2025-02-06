@@ -37,3 +37,6 @@
 ## Admin
 `username: kylet`
 `password: kylet123`
+
+## AI usage
+- Generate sample data for 5 categories, 10 tags, 20 products
